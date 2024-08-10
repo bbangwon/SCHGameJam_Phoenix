@@ -12,6 +12,8 @@ public class Title : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
+
         isInGameMovable = false;
         await title.transform
             .DOLocalMoveY(-320f, 1f)

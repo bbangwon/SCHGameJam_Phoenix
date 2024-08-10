@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     float npcSpawnTime = 2f;
 
     float gameTime = 0f;
+    public float GameTime => gameTime;  
+
     float npcSpawnTimer = 0f;
 
     [SerializeField]
