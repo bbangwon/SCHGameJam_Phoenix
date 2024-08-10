@@ -2,13 +2,7 @@
 
 public class Player : CharacterBase
 {
-    TriggerChecker triggerChecker;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        triggerChecker = GetComponent<TriggerChecker>();
-    }
+    public Vector2 CenterPosition => transform.localPosition + Vector3.up * 0.5f;
 
     protected override void Update()
     {
@@ -52,5 +46,5 @@ public class Player : CharacterBase
         transform.position = triggerChecker.TriggeredMissile.FrontPosition;
     }
 
-    public Vector2 CenterPosition => transform.localPosition + Vector3.up * 0.5f;
+    
 }

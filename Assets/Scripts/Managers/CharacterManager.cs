@@ -1,6 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
@@ -67,4 +66,6 @@ public class CharacterManager : MonoBehaviour
         }
         jumpers.Add(jumper);
     }
+
+
 }

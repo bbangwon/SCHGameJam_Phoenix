@@ -92,9 +92,9 @@ GameObject:
   - component: {fileID: 5148490135458290898}
   - component: {fileID: 2682356848052381348}
   - component: {fileID: 727313624018941011}
-  - component: {fileID: 9044006988576955195}
+  - component: {fileID: 6621760156384470244}
   m_Layer: 0
-  m_Name: Blue
+  m_Name: Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9639174bba2500b4e880840aa8b83095, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0349b33fd1a71434a9b32ba00c970beb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &9044006988576955195
+--- !u!114 &6621760156384470244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
