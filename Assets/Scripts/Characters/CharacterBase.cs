@@ -14,7 +14,10 @@ public class CharacterBase : MonoBehaviour, IJumper
     protected JumpController jumpController;
     protected GroundChecker groundChecker;
     protected TriggerChecker triggerChecker;
+    protected SpriteRenderer spriteRenderer;
     protected Rigidbody2D rb;
+
+
 
     protected States state = States.Appearing;
 
@@ -53,6 +56,7 @@ public class CharacterBase : MonoBehaviour, IJumper
         jumpController = GetComponent<JumpController>();
         groundChecker = GetComponent<GroundChecker>();
         triggerChecker = GetComponent<TriggerChecker>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -123,6 +127,7 @@ public class CharacterBase : MonoBehaviour, IJumper
 
     protected virtual void Die()
     {
+        spriteRenderer.enabled = false;
         triggerChecker.StopCheck();
     }
 

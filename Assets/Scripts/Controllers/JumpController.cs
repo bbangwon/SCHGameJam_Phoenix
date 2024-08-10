@@ -4,17 +4,9 @@ public class JumpController : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    [SerializeField]
-    private float jumpForce = 5f;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    public void Jump()
-    {
-        rb.velocity = new Vector2(rb.position.x, jumpForce);
     }
 
     public float GetJumpForce()
@@ -24,6 +16,6 @@ public class JumpController : MonoBehaviour
 
     public void Jump(float force)
     {
-        rb.velocity = new Vector2(rb.position.x, force);
+        rb.velocity = Vector2.up * force;
     }
 }

@@ -193,8 +193,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 5
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!70 &4522117726645621952
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -224,11 +224,11 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.75}
-  m_Size: {x: 1, y: 1.5}
+  m_Size: {x: 0.5, y: 1.5}
   m_Direction: 0
 --- !u!114 &5148490135458290898
 MonoBehaviour:
@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c34f2784e6f694abfc5163f31e0aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
 --- !u!114 &2682356848052381348
 MonoBehaviour:
   m_ObjectHideFlags: 0
