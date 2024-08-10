@@ -15,7 +15,7 @@ public class CharacterBase : MonoBehaviour, IJumper
     protected GroundChecker groundChecker;
     protected Rigidbody2D rb;
 
-    protected States State { get; private set; } = States.Appearing;
+    public States State { get; protected set; } = States.Appearing;
     
     const float APPEARING_START_Y = 7f;
     const float DIE_START_Y = 7f;

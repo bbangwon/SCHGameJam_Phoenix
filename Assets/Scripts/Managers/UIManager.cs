@@ -9,10 +9,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI gameTimeText;
 
-    [SerializeField]
-    TextMeshProUGUI triggeredCountText;
-
-
     private void Awake()
     {
         instance = this;
@@ -22,11 +18,4 @@ public class UIManager : MonoBehaviour
     {
         gameTimeText.text = $"{gameTime:0.0}";
     }
-
-    public void SetTriggeredCount(int triggeredCount)
-    {
-        triggeredCountText.text = triggeredCount.ToString();
-    }
-
-
 }

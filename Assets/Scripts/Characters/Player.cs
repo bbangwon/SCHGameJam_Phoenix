@@ -2,25 +2,34 @@
 
 public class Player : CharacterBase
 {
-    ObstacleChecker obstacleChecker;
+    TriggerChecker triggerChecker;
 
     protected override void Awake()
     {
         base.Awake();
-        obstacleChecker = GetComponent<ObstacleChecker>();
+        triggerChecker = GetComponent<TriggerChecker>();
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (obstacleChecker.IsTriggered)
+        if (triggerChecker.IsObstacleTriggered)
         {
-            UIManager.Instance.SetTriggeredCount(obstacleChecker.TriggeredCount);
+            //UIManager.Instance.SetTriggeredCount(triggerChecker.ObstacleTriggeredCount);
 
             //장애물에 닿음
             //사망 처리?
-        }    
+        }
+
+        if(triggerChecker.TriggeredMissile != null)
+        {
+            if(State != States.Die)
+                State = States.Die;
+
+            //미사일 따라 날라감
+            DieFromMissile();
+        }
     }
 
     void OnJump()
@@ -36,6 +45,11 @@ public class Player : CharacterBase
                 GameManager.Instance.LaunchMissile();
             }
         }
+    }
+
+    void DieFromMissile()
+    {
+        transform.position = triggerChecker.TriggeredMissile.FrontPosition;
     }
 
     public Vector2 CenterPosition => transform.localPosition + Vector3.up * 0.5f;
