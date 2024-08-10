@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DarkTonic.MasterAudio;
+
 public class CharacterManager : MonoBehaviour
 {
     static CharacterManager instance;
@@ -32,6 +34,7 @@ public class CharacterManager : MonoBehaviour
 
     public async void Jump()
     {
+        MasterAudio.PlaySound("jump");
         var currentJumpers = new List<IJumper>(jumpers);
         foreach (var jumper in currentJumpers)
         {

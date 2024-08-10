@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class Ending : MonoBehaviour
         {
             endingImage.sprite = _endingSprite[Random.Range(0, _endingSprite.Length)];
         }
+
+        MasterAudio.PlaySound("Ending");
     }
 
     // Update is called once per frame

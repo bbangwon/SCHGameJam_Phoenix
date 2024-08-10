@@ -31,6 +31,7 @@ public class Title : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                DOTween.KillAll();
                 SceneManager.LoadScene("InGame");
             }
         }
