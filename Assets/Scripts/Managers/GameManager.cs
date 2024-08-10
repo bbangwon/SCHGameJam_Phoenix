@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Missile missilePrefab;
 
+    [SerializeField]
+    Hot6 hot6;
+
     const float MissileSpawnPositionX = 11f;
 
     Player player;
@@ -65,6 +68,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log($"{TOTAL_GAME_TIME}초 지남 게임 끝!");
             State = GameStates.Over;
+
+            hot6.Go();
         }
     }
 

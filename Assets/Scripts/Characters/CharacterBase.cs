@@ -7,6 +7,7 @@ public class CharacterBase : MonoBehaviour, IJumper
         None,
         Appearing,
         Running,
+        Hot6,
         Die
     }
 
@@ -42,6 +43,8 @@ public class CharacterBase : MonoBehaviour, IJumper
     
     const float APPEARING_START_Y = 7f;
     const float DIE_START_Y = 7f;
+
+    public bool IsAlive => State != States.None && State != States.Die;
     
     
 
@@ -93,6 +96,14 @@ public class CharacterBase : MonoBehaviour, IJumper
         return rb.velocity.y;
     }
 
+    public void TakeHot6()
+    {
+        State = States.Hot6;
+
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+    }
+
     protected virtual void Appearing()
     {
         //떨어지는 위치 설정
@@ -114,4 +125,11 @@ public class CharacterBase : MonoBehaviour, IJumper
     {
         triggerChecker.StopCheck();
     }
+
+    protected virtual void Hot6()
+    {
+        //Hot6에 탔을때
+    }
+
+
 }

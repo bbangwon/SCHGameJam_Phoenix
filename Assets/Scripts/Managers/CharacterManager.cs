@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class CharacterManager : MonoBehaviour
     bool isJumping = false;
 
     const float APPEARING_DELAY = 0.5f;
+
+    public int AliveCount => jumpers.Count(jumper => jumper.IsAlive);
 
     private void Awake()
     {
@@ -67,5 +70,12 @@ public class CharacterManager : MonoBehaviour
         jumpers.Add(jumper);
     }
 
-
+    public void TakeHot6(Hot6 hot6)
+    {
+        for (int i = 0; i < jumpers.Count; i++)
+        {
+            if (jumpers[i].State == CharacterBase.States.Running)
+                hot6.Take(i, jumpers[i]);
+        }
+    }
 }
