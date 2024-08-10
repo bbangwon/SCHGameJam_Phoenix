@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
         await hot6.Go();
 
-        if (CharacterManager.Instance.AliveCount == 0)
+        if (!player.IsAlive)
             SceneManager.LoadScene("BadEnding");
         else
             SceneManager.LoadScene("GoodEnding");

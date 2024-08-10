@@ -12,7 +12,10 @@ public class Ending : MonoBehaviour
 
     private void Start()
     {
-        endingImage.sprite = _endingSprite[Random.Range(0, _endingSprite.Length)];
+        if(endingImage != null && _endingSprite != null)
+        {
+            endingImage.sprite = _endingSprite[Random.Range(0, _endingSprite.Length)];
+        }
     }
 
     // Update is called once per frame
