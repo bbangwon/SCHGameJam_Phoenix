@@ -16,4 +16,14 @@ public class JumpController : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.position.x, jumpForce);
     }
+
+    public float GetJumpForce()
+    {
+        return rb.velocity.y;
+    }
+
+    public void Jump(float force)
+    {
+        rb.velocity = new Vector2(rb.position.x, force);
+    }
 }

@@ -1,32 +1,42 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour, IJumper
+public class Player : CharacterBase
 {
-    GroundChecker groundChecker;
-    JumpController jumpController;
+    ObstacleChecker obstacleChecker;
 
-    private void Awake()
+    protected override void Awake()
     {
-        groundChecker = GetComponent<GroundChecker>();
-        jumpController = GetComponent<JumpController>();
+        base.Awake();
+        obstacleChecker = GetComponent<ObstacleChecker>();
     }
 
-    private void Start()
+    protected override void Update()
     {
-        CharacterManager.Instance.AddJumper(this);
-    
-    }
+        base.Update();
 
-    public void Jump()
-    {
-        jumpController.Jump();
+        if (obstacleChecker.IsTriggered)
+        {
+            UIManager.Instance.SetTriggeredCount(obstacleChecker.TriggeredCount);
+
+            //장애물에 닿음
+            //사망 처리?
+        }    
     }
 
     void OnJump()
     {
-        if (groundChecker.IsGrounded)
+        if(State == States.Running)
         {
-            CharacterManager.Instance.Jump();
+            if (groundChecker.IsGrounded)
+            {
+                CharacterManager.Instance.Jump();
+            }
+            else
+            {
+                GameManager.Instance.LaunchMissile();
+            }
         }
     }
+
+    public Vector2 CenterPosition => transform.localPosition + Vector3.up * 0.5f;
 }

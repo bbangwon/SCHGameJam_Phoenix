@@ -1,7 +1,7 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-
 public class CharacterManager : MonoBehaviour
 {
     static CharacterManager instance;
@@ -9,17 +9,24 @@ public class CharacterManager : MonoBehaviour
 
     [SerializeField]
     Transform[] jumperPositions;
-    List<IJumper> jumpers;
+    List<CharacterBase> jumpers;
+
+    public int JumperCount => jumpers.Count;
+
+    [SerializeField]
+    private float jumpForce = 5f;
 
     [SerializeField]
     private float jumpInterval = 0.5f;
 
     bool isJumping = false;
 
+    const float APPEARING_DELAY = 0.5f;
+
     private void Awake()
     {
         instance = this;
-        jumpers = new List<IJumper>();
+        jumpers = new List<CharacterBase>();
     }
 
     public async void Jump()
@@ -27,7 +34,7 @@ public class CharacterManager : MonoBehaviour
         var currentJumpers = new List<IJumper>(jumpers);
         foreach (var jumper in currentJumpers)
         {
-            jumper.Jump();
+            jumper.Jump(jumpForce);
             await UniTask.Delay((int)(jumpInterval * 1000));
         }
     }
@@ -37,25 +44,27 @@ public class CharacterManager : MonoBehaviour
         return jumpers.Count >= jumperPositions.Length;
     }
 
-    public void AddJumper(IJumper jumper)
+    public async void AddJumper(CharacterBase jumper)
     {
-        //Jumper¸¦ Ãß°¡ÇÒ¼ö ÀÖ´Â ÀÚ¸®°¡ ÀÖ´ÂÁö È®ÀÎ
+        //Jumperë¥¼ ì¶”ê°€í• ìˆ˜ ìˆëŠ” ìë¦¬ê°€ ìˆëŠ”ì§€ í™•ì¸
         if (IsJumperFull())
         {
-            Debug.LogError("Jumper¸¦ Ãß°¡ÇÒ¼ö ÀÖ´Â ÀÚ¸®°¡ ¾ø½À´Ï´Ù.");
+            Debug.LogError("Jumperë¥¼ ì¶”ê°€í• ìˆ˜ ìˆëŠ” ìë¦¬ê°€ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
-        //jumperµéÀ» ÇÑÄ­¾¿ µÚ·Î ¹Ğ¾îÁØ´Ù.
+        jumper.transform.SetParent(jumperPositions[0], false);
+        jumper.Appear();
+
+        //ì ì‹œ ê¸°ë‹¤ë¦¼
+        await UniTask.Delay((int)(APPEARING_DELAY * 1000));
+
+        //jumperë“¤ì„ í•œì¹¸ì”© ë’¤ë¡œ ë°€ì–´ì¤€ë‹¤.
         for (int i = 0; i < jumpers.Count; i++)
         {
-            Transform jt = (jumpers[i] as MonoBehaviour).transform;
+            Transform jt = jumpers[i].transform;
             jt.SetParent(jumperPositions[jumpers.Count - i], false);
         }
-
-        Transform jumperTransform = (jumper as MonoBehaviour).transform;
-
-        jumperTransform.SetParent(jumperPositions[0], false);
         jumpers.Add(jumper);
     }
 }

@@ -1,4 +1,5 @@
 ﻿public interface IJumper
 {
-    void Jump();
+    float GetJumpForce();
+    void Jump(float jumpForce);
 }
