@@ -15,6 +15,7 @@ public class CharacterBase : MonoBehaviour, IJumper
     protected GroundChecker groundChecker;
     protected TriggerChecker triggerChecker;
     protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
     protected Rigidbody2D rb;
 
 
@@ -57,6 +58,7 @@ public class CharacterBase : MonoBehaviour, IJumper
         groundChecker = GetComponent<GroundChecker>();
         triggerChecker = GetComponent<TriggerChecker>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -64,23 +66,32 @@ public class CharacterBase : MonoBehaviour, IJumper
     public void Appear()
     {
         State = States.Appearing;
+
+        if(animator != null)
+            animator.enabled = false;
     }
 
     protected virtual void Update()
     {
-        if (State == States.Appearing)
+        if (groundChecker.IsGrounded)
         {
-            if (groundChecker.IsGrounded)
+            if(State == States.Appearing)
             {
                 State = States.Running;
-                rb.gravityScale = 1f;
             }
         }
 
         //화면 밖으로 나가면 사망처리
-        if(State == States.Running && triggerChecker.IsDeadZoneTriggered) 
+        if(State == States.Running) 
         {
-            State = States.Die;
+            if(triggerChecker.IsDeadZoneTriggered)
+            {
+                State = States.Die;
+                return;
+            }
+
+            if(animator != null)
+                animator.SetBool("IsJumping", !groundChecker.IsGrounded);
         }
     }
 
@@ -92,7 +103,9 @@ public class CharacterBase : MonoBehaviour, IJumper
     public void Jump(float jumpForce)
     {
         if(State == States.Running)
+        {
             jumpController.Jump(jumpForce);
+        }
     }
 
     public float GetVelocityY()
@@ -121,12 +134,19 @@ public class CharacterBase : MonoBehaviour, IJumper
 
     protected virtual void Running()
     {
+        if (animator != null)
+        {
+            animator.enabled = true;
+            animator.Rebind();
+        }
+
         rb.gravityScale = 1f;
         triggerChecker.StartCheck();
     }
 
     protected virtual void Die()
     {
+        animator.enabled = false;
         spriteRenderer.enabled = false;
         triggerChecker.StopCheck();
     }

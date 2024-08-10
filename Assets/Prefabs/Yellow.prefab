@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2682356848052381348}
   - component: {fileID: 727313624018941011}
   - component: {fileID: 6621760156384470244}
+  - component: {fileID: 4138810838905947725}
   m_Layer: 0
   m_Name: Yellow
   m_TagString: Untagged
@@ -282,3 +283,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0d500c074d70a43bca2e2df6a235b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4138810838905947725
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427768121516382913}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: b3e0c1a325bf49648bbf5bf46d2edff9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
