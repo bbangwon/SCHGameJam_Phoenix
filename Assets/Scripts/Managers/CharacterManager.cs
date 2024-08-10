@@ -24,7 +24,6 @@ public class CharacterManager : MonoBehaviour
     const float APPEARING_DELAY = 0.5f;
 
     public int AliveCount => jumpers.Count(jumper => jumper.IsAlive);
-
     private void Awake()
     {
         instance = this;

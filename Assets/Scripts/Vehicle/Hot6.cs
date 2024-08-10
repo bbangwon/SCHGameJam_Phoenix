@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -12,19 +13,11 @@ public class Hot6 : MonoBehaviour
         new Vector3(12.79033f, 4.612154f, 0f) 
     };
 
-    private void Update()
+    public async UniTask Go()
     {
-        if(Input.GetKeyDown(KeyCode.F1))
-        {
-            Go();
-        }
-    }
-
-    public void Go()
-    {
-       transform.DOPath(waypoints, 3f, PathType.CatmullRom, PathMode.Sidescroller2D, 10, Color.red)
-            .OnWaypointChange(OnWaypointChange)
-            .OnComplete(OnComplete);
+        await transform.DOPath(waypoints, 3f, PathType.CatmullRom, PathMode.Sidescroller2D, 10, Color.red)
+             .OnWaypointChange(OnWaypointChange)
+             .AsyncWaitForCompletion();
     }
 
     private void OnWaypointChange(int index)
@@ -35,11 +28,6 @@ public class Hot6 : MonoBehaviour
             //캐릭터들을 모두 태운다.
             CharacterManager.Instance.TakeHot6(this);
         }
-    }
-
-    private void OnComplete()
-    {
-        //도착했을때..
     }
 
     public void Take(int index, CharacterBase character)

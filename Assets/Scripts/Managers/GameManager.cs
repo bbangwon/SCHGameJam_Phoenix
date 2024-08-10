@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         if(State == GameStates.Start)
         {
+            ProcessCheckPlayerDead();
             ProcessGameTime();
             ProcessNpcSpawn();
         }
@@ -62,6 +64,17 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene("InGame");
+        }
+    }
+
+    void ProcessCheckPlayerDead()
+    {
+        if(!player.IsAlive && CharacterManager.Instance.JumperCount > 0)
+        {
+            Debug.Log("플레이어가 죽었습니다.");
+
+            State = GameStates.Over;
+            EndGame();
         }
     }
 
@@ -73,10 +86,21 @@ public class GameManager : MonoBehaviour
         if(gameTime >= TOTAL_GAME_TIME)
         {
             Debug.Log($"{TOTAL_GAME_TIME}초 지남 게임 끝!");
-            State = GameStates.Over;
 
-            hot6.Go();
+            State = GameStates.Over;
+            EndGame();
         }
+    }
+
+    async void EndGame()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+        await hot6.Go();
+
+        if (CharacterManager.Instance.AliveCount == 0)
+            SceneManager.LoadScene("BadEnding");
+        else
+            SceneManager.LoadScene("GoodEnding");
     }
 
     void ProcessNpcSpawn()
