@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using UnityEngine;
 
 public class Missile : MonoBehaviour
@@ -9,6 +10,11 @@ public class Missile : MonoBehaviour
     Transform frontTransform;
 
     public Vector2 FrontPosition => frontTransform.position;
+
+    private void Start()
+    {
+        MasterAudio.PlaySound("Missile");
+    }
 
     // Update is called once per frame
     void Update()

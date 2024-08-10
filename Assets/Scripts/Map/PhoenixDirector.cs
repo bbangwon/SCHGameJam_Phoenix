@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using UnityEngine;
 
 public class PhoenixDirector : MonoBehaviour
@@ -13,11 +14,13 @@ public class PhoenixDirector : MonoBehaviour
     {
         if(GameManager.Instance.GameTime > 2f && !phoenix_1.Moved)
         {
+            MasterAudio.PlaySound("Phoenix");
             phoenix_1.Move();
         }
 
         if (GameManager.Instance.GameTime > 7f && !phoenix_2.Moved)
         {
+            MasterAudio.PlaySound("Phoenix");
             phoenix_2.Move();
         }
     }

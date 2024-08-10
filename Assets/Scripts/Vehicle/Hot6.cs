@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
+using DarkTonic.MasterAudio;
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class Hot6 : MonoBehaviour
@@ -15,6 +17,10 @@ public class Hot6 : MonoBehaviour
 
     public async UniTask Go()
     {
+        PlaylistController.Instances[0].StopPlaylist();
+        MasterAudio.PlaySound("Hot6");
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+
         await transform.DOPath(waypoints, 3f, PathType.CatmullRom, PathMode.Sidescroller2D, 10, Color.red)
              .OnWaypointChange(OnWaypointChange)
              .AsyncWaitForCompletion();

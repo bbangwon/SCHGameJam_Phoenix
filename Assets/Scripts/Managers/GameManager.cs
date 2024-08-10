@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
 
     async void EndGame()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
         await hot6.Go();
 
         if (!player.IsAlive)
