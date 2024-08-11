@@ -161,7 +161,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.breadone.eagle5
+    Android: com.breadone.zzabtman
     Standalone: com.DefaultCompany.2DProject
   buildNumber:
     Standalone: 0

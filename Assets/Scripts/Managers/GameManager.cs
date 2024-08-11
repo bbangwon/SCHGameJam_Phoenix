@@ -50,11 +50,6 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        GameStart();
-    }
-
     private void Update()
     {
         if(State == GameStates.Start)
@@ -62,11 +57,6 @@ public class GameManager : MonoBehaviour
             ProcessCheckPlayerDead();
             ProcessGameTime();
             ProcessNpcSpawn();
-        }
-
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("InGame");
         }
     }
 
@@ -119,7 +109,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void GameStart()
+    public void GameStart()
     {
         //Player 생성
         player = Instantiate(jumpablePrefab[0], new Vector3(0, 0, 0), Quaternion.identity) as Player;

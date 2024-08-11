@@ -459,7 +459,7 @@ MonoBehaviour:
   isShuffle: 0
   isAutoAdvance: 1
   loopPlaylist: 1
-  _playlistVolume: 0.63095737
+  _playlistVolume: 1
   isMuted: 0
   startPlaylistName: Title
   syncGroupNum: -1

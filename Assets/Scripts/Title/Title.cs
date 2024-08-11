@@ -12,7 +12,11 @@ public class Title : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
+#if UNITY_WEBGL
+        Screen.SetResolution(1600, 900, true);
+#else
         Screen.SetResolution(1920, 1080, true);
+#endif
 
         isInGameMovable = false;
         await title.transform
